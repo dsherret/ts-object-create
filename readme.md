@@ -5,7 +5,7 @@
 [![Coverage Status](https://coveralls.io/repos/dsherret/ts-object-create/badge.svg?branch=master&service=github)](https://coveralls.io/github/dsherret/ts-object-create?branch=master)
 [![experimental](http://badges.github.io/stability-badges/dist/experimental.svg)](http://github.com/badges/stability-badges)
 
-This is a very experimental library that uses code generation to create methods for creating objects. **Currently it doesn't work in many scenarios so just don't use this yet.**
+This is a very experimental library that uses code generation to create functions for creating objects. **Currently it doesn't work in many scenarios so just don't use this yet.**
 
 ## Example
 
