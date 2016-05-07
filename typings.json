@@ -1,0 +1,13 @@
+{
+  "name": "ts-object-create",
+  "main": "ts-object-create.d.ts",
+  "version": false,
+  "ambientDevDependencies": {
+    "mocha": "github:DefinitelyTyped/DefinitelyTyped/mocha/mocha.d.ts#62eedc3121a5e28c50473d2e4a9cefbcb9c3957f",
+    "node": "github:DefinitelyTyped/DefinitelyTyped/node/node.d.ts#3fc1377ce29dd9670975cb68615edf1b819fc4a5"
+  },
+  "devDependencies": {
+    "chai": "registry:npm/chai#3.5.0+20160415060238",
+    "ts-type-info": "npm:ts-type-info"
+  }
+}

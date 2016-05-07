@@ -1,0 +1,47 @@
+{
+  "name": "ts-object-create",
+  "version": "0.1.0",
+  "description": "Object creation that utilizes type information",
+  "main": "dist/main.js",
+  "scripts": {
+    "test": "gulp test && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
+    "build": "gulp typescript",
+    "pre-publish": "gulp tslint && gulp test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dsherret/ts-object-create.git"
+  },
+  "keywords": [
+    "typescript",
+    "code"
+  ],
+  "author": "David Sherret",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dsherret/ts-object-create/issues"
+  },
+  "homepage": "https://github.com/dsherret/ts-object-create#readme",
+  "typescript": {
+    "definition": "ts-object-create.d.ts"
+  },
+  "dependencies": {
+    "typescript": "^1.7.3"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "coveralls": "^2.11.6",
+    "del": "^2.0.2",
+    "gulp": "^3.9.0",
+    "gulp-istanbul": "^0.10.3",
+    "gulp-mocha": "^2.2.0",
+    "gulp-replace": "^0.5.4",
+    "gulp-sourcemaps": "^2.0.0-alpha",
+    "gulp-tslint": "^5.0.0",
+    "gulp-typescript": "^2.9.2",
+    "mocha": "^2.3.3",
+    "ts-type-info": "^3.0.1",
+    "tslint": "^3.8.0",
+    "typescript": "^1.8.10"
+  }
+}
