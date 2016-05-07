@@ -11,7 +11,7 @@ This is a very experimental library that uses code generation to create methods 
 
 ### Setup
 
-Say you have a class like this:
+Say you have some classes like this:
 
 ```typescript
 // ./src/classes.ts
