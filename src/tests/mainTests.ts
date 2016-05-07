@@ -36,7 +36,6 @@ function objectAssign(a: any, b: any) {
 describe("one directional relationship", () => {
     it("should do the code", () => {
         const code = getGeneratedCode({
-            distRoot: "./dist",
             srcRoot: "./src",
             files: ["./src/tests/test-files/oneDirectionalRelationship.ts"]
         });

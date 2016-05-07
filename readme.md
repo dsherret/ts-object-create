@@ -31,7 +31,6 @@ You could generate some code based on these classes:
 import * as fs from "fs";
 
 const code = getGeneratedCode({
-    distRoot: "./dist";
     srcRoot: "./src"
     files: ["./src/classes.ts"]
 });
