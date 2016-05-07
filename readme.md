@@ -57,10 +57,10 @@ const main = objectFactory.Classes.Main.create({
 main instanceof Main;        // true
 main.other instanceof Other; // true
 
-const json = JSON.stringify(obj);
-const obj = JSON.parse(json);
-
-const newMain = objectFactory.Classes.Main.create(obj);
+// serialize it
+const json = JSON.stringify(main);
+// deserialize it
+const newMain = objectFactory.Classes.Main.create(JSON.parse(json));
 
 newMain instanceof Main;        // true
 newMain.other instanceof Other; // true
