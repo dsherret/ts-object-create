@@ -1,8 +1,9 @@
-﻿interface Main {
+﻿export class Main {
     name: string;
     other: Other;
 }
 
-class Other {
+export interface Other {
     prop: string;
+    main: Main;
 }

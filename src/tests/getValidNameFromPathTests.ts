@@ -2,6 +2,14 @@
 import {getValidNameFromPath} from "./../getValidNameFromPath";
 
 describe("getValidNameFromPath()", () => {
+    it("should return an empty string when passed null", () => {
+        expect(getValidNameFromPath(null)).to.equal("");
+    });
+
+    it("should return an empty string when passed one", () => {
+        expect(getValidNameFromPath("")).to.equal("");
+    });
+
     it("should get name without extension", () => {
         expect(getValidNameFromPath("get-file-name")).to.equal("GetFileName");
     });

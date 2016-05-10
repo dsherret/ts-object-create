@@ -3,6 +3,6 @@
     other: Other;
 }
 
-export class Other {
+export default class Other {
     prop: string;
 }

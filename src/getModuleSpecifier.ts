@@ -1,6 +1,4 @@
-﻿import {FileDefinition} from "ts-type-info";
-
-export function getModuleSpecifier(opts: { srcRoot: string; fileName: string; }) {
+﻿export function getModuleSpecifier(opts: { srcRoot: string; fileName: string; }) {
     const removeSlashAtBeginning = (str: string) => str.replace(/^\.?[\\\/]/, "");
     const standardizeSlashes = (str: string) => str.replace(/\\/g, "/");
     let {srcRoot, fileName} = opts;
