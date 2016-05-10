@@ -1,6 +1,6 @@
 {
   "name": "ts-object-create",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "description": "Object creation that utilizes type information",
   "main": "dist/main.js",
   "scripts": {

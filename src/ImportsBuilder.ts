@@ -17,12 +17,20 @@ export class ImportsBuilder {
             this.importByFileName[opts.fileDefinition.fileName] = this.createImport(opts.fileDefinition);
         }
 
-        this.importByFileName[opts.fileDefinition.fileName].addNamedImports({
-            name: opts.definition.isNamedExportOfFile ? opts.definition.name : "default",
-            alias: opts.aliasNameInImport
-        });
+        const importForCreate = this.importByFileName[opts.fileDefinition.fileName];
+        const namespaces = opts.fileDefinition.getNamespacesToDefinition(opts.definition);
+        const defForImport = namespaces.length > 0 ? namespaces[0] : opts.definition;
+        const importName = defForImport.isNamedExportOfFile ? defForImport.name : "default";
+        const doesImportExist = importForCreate.getNamedImport(n => n.definitions[0].name === importName) != null;
 
-        return this.importByFileName[opts.fileDefinition.fileName];
+        if (!doesImportExist) {
+            importForCreate.addNamedImports({
+                name: importName,
+                alias: opts.aliasNameInImport
+            });
+        }
+
+        return importForCreate;
     }
 
     private createImport(file: FileDefinition) {

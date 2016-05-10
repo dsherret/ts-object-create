@@ -13,7 +13,8 @@ export class NamespaceForCreateFiller {
     private fileDefinition = createFile();
 
     fillNamespaceForCreate(defInfo: DefinitionInfo) {
-        const parentNamespace = this.getNamespace(defInfo.importDef.moduleSpecifier, this.fileDefinition) as NamespaceDefinition;
+        const fileNamespace = this.getNamespaceFromModuleSpecifier(defInfo.importDef.moduleSpecifier, this.fileDefinition) as NamespaceDefinition;
+        const parentNamespace = this.getNamespaceBasedOnParentNamespaceInFile(fileNamespace, defInfo);
         parentNamespace.addNamespaces({
             name: defInfo.definition.name,
             isExported: true
@@ -28,7 +29,7 @@ export class NamespaceForCreateFiller {
         return this.fileDefinition.namespaces;
     }
 
-    private getNamespace(moduleSpecifier: string, currentDef: ModuledDefinition): ModuledDefinition {
+    private getNamespaceFromModuleSpecifier(moduleSpecifier: string, currentDef: ModuledDefinition): ModuledDefinition {
         moduleSpecifier = moduleSpecifier.replace(/^\.?[/\\]*/, "");
         const hasDir = /[\\/]/.test(moduleSpecifier);
 
@@ -38,11 +39,22 @@ export class NamespaceForCreateFiller {
             currentDef = this.getNamespaceFromName(currentDef, getValidNameFromPath(currentDir));
             moduleSpecifier = moduleSpecifier.replace(/^[^\\/]+[\\/]/, "");
 
-            return this.getNamespace(moduleSpecifier, currentDef);
+            return this.getNamespaceFromModuleSpecifier(moduleSpecifier, currentDef);
         }
         else {
             return this.getNamespaceFromName(currentDef, getValidNameFromPath(moduleSpecifier));
         }
+    }
+
+    private getNamespaceBasedOnParentNamespaceInFile(fileNamespace: NamespaceDefinition, defInfo: DefinitionInfo) {
+        const namespaces = defInfo.fileDefinition.getNamespacesToDefinition(defInfo.definition);
+        let currentNamespace = fileNamespace;
+
+        namespaces.forEach(n => {
+            currentNamespace = this.getNamespaceFromName(currentNamespace, n.name);
+        });
+
+        return currentNamespace;
     }
 
     private getNamespaceFromName(currentDef: ModuledDefinition, name: string) {

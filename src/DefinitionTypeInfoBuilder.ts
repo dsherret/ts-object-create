@@ -1,4 +1,4 @@
-﻿import {GlobalDefinition, BasePropertyDefinition} from "ts-type-info";
+﻿import {GlobalDefinition, BasePropertyDefinition, ExportableDefinitions} from "ts-type-info";
 import {DefinitionInfo, SupportedDefinitions} from "./DefinitionInfo";
 
 export interface DefinitionTypeInfo {
@@ -16,13 +16,18 @@ export class DefinitionTypeInfoBuilder {
         const exportDefs = this.getFileExports();
         this.defs = [];
 
-        exportDefs.forEach(d => {
-            if (d.isClassDefinition() || d.isInterfaceDefinition()) {
-                this.createOrGetDefinitionInfo(d);
-            }
-        });
+        exportDefs.forEach(d => this.handleExport(d));
 
         return this.defs;
+    }
+
+    private handleExport(def: ExportableDefinitions) {
+        if (def.isClassDefinition() || def.isInterfaceDefinition()) {
+            this.createOrGetDefinitionInfo(def);
+        }
+        else if (def.isNamespaceDefinition()) {
+            def.getExports().forEach(exportDef => this.handleExport(exportDef));
+        }
     }
 
     private getFileExports() {
