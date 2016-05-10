@@ -41,7 +41,7 @@ export class NamespaceForCreateFiller {
             return this.getNamespace(moduleSpecifier, currentDef);
         }
         else {
-            return currentDef;
+            return this.getNamespaceFromName(currentDef, getValidNameFromPath(moduleSpecifier));
         }
     }
 

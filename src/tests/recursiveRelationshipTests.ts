@@ -9,25 +9,27 @@ type Other2Type = { prop?: string; main?: Main1Type; };
 
 export namespace Tests {
     export namespace TestFiles {
-        export namespace Main {
-            export function create(obj: Main1Type) {
-                const o = Object.create(Main1.prototype);
-                objectAssign(o, obj);
-                if (typeof obj.other !== "undefined") {
-                    o.other = Tests.TestFiles.Other.create(obj.other);
+        export namespace RecursiveRelationship {
+            export namespace Main {
+                export function create(obj: Main1Type) {
+                    const o = Object.create(Main1.prototype);
+                    objectAssign(o, obj);
+                    if (typeof obj.other !== "undefined") {
+                        o.other = Tests.TestFiles.RecursiveRelationship.Other.create(obj.other);
+                    }
+                    return o;
                 }
-                return o;
             }
-        }
 
-        export namespace Other {
-            export function create(obj: Other2Type) {
-                const o = Object.create(Other2.prototype);
-                objectAssign(o, obj);
-                if (typeof obj.main !== "undefined") {
-                    o.main = Tests.TestFiles.Main.create(obj.main);
+            export namespace Other {
+                export function create(obj: Other2Type) {
+                    const o = Object.create(Other2.prototype);
+                    objectAssign(o, obj);
+                    if (typeof obj.main !== "undefined") {
+                        o.main = Tests.TestFiles.RecursiveRelationship.Main.create(obj.main);
+                    }
+                    return o;
                 }
-                return o;
             }
         }
     }

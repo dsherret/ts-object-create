@@ -9,22 +9,24 @@ type Other2Type = { prop?: string; };
 
 export namespace Tests {
     export namespace TestFiles {
-        export namespace Main {
-            export function create(obj: Main1Type) {
-                const o = Object.create(Main1.prototype);
-                objectAssign(o, obj);
-                if (typeof obj.other !== "undefined") {
-                    o.other = Tests.TestFiles.Other.create(obj.other);
+        export namespace OneDirectionalRelationship {
+            export namespace Main {
+                export function create(obj: Main1Type) {
+                    const o = Object.create(Main1.prototype);
+                    objectAssign(o, obj);
+                    if (typeof obj.other !== "undefined") {
+                        o.other = Tests.TestFiles.OneDirectionalRelationship.Other.create(obj.other);
+                    }
+                    return o;
                 }
-                return o;
             }
-        }
 
-        export namespace Other {
-            export function create(obj: Other2Type) {
-                const o = Object.create(Other2.prototype);
-                objectAssign(o, obj);
-                return o;
+            export namespace Other {
+                export function create(obj: Other2Type) {
+                    const o = Object.create(Other2.prototype);
+                    objectAssign(o, obj);
+                    return o;
+                }
             }
         }
     }
