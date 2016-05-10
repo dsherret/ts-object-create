@@ -7,7 +7,7 @@ export class FunctionForCreateFiller {
             isExported: true,
             parameters: [{ name: "obj", type: defInfo.typeAliasDef.name }],
             onWriteFunctionBody: writer => {
-                writer.writeLine(`const o = ${this.getCreateByDefinitionAndAlias(defInfo.definition, defInfo.aliasNameInFile)};`);
+                writer.writeLine(`const o = ${this.getCreateByDefinitionAndAlias(defInfo.definition, defInfo.aliasNameInFile)} as any;`);
                 writer.writeLine(`objectAssign(o, obj);`);
                 Object.keys(defInfo.propertyDependencies).forEach(name => {
                     const propDependency = defInfo.propertyDependencies[name];
@@ -15,7 +15,7 @@ export class FunctionForCreateFiller {
                         writer.writeLine(`o.${name} = ${propDependency.namespacePath}.create(obj.${name});`);
                     });
                 });
-                writer.writeLine("return o;");
+                writer.writeLine(`return o as ${defInfo.aliasNameInFile};`);
             }
         });
     }
