@@ -2,8 +2,8 @@
 
 export function getValidNameFromPath(fileName: string) {
     // get file name from absolute or relative path
-    fileName = fileName.replace(/\\/g, "/"); // standardize all slashes
-    fileName = removeExtension(path.basename(fileName || ""));
+    fileName = (fileName || "").replace(/\\/g, "/"); // standardize all slashes
+    fileName = removeExtension(path.basename(fileName));
     let finalName = "";
     let shouldUpperCaseNext = true;
 
