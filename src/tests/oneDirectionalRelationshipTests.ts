@@ -4,7 +4,7 @@ import {getGeneratedCode} from "./../main";
 const expected =
 `import {Main as Main1, default as Other2} from "./tests/test-files/oneDirectionalRelationship";
 
-type Main1Type = { name?: string; other?: Other2Type; };
+type Main1Type = { constructorParameter?: Other2Type; name?: string; other?: Other2Type; };
 type Other2Type = { prop?: string; };
 
 export namespace Tests {
@@ -14,6 +14,9 @@ export namespace Tests {
                 export function create(obj: Main1Type) {
                     const o = Object.create(Main1.prototype) as any;
                     objectAssign(o, obj);
+                    if (typeof obj.constructorParameter !== "undefined") {
+                        o.constructorParameter = Tests.TestFiles.OneDirectionalRelationship.Other.create(obj.constructorParameter);
+                    }
                     if (typeof obj.other !== "undefined") {
                         o.other = Tests.TestFiles.OneDirectionalRelationship.Other.create(obj.other);
                     }

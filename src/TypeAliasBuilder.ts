@@ -27,7 +27,7 @@ export class TypeAliasBuilder {
 
     private getTypeExpressionText(defInfo: DefinitionInfo) {
         let typeStr = "{ ";
-        defInfo.definition.properties.forEach(p => {
+        defInfo.properties.forEach(p => {
             // simple for now
             typeStr += p.name + "?: ";
 

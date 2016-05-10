@@ -1,9 +1,10 @@
-﻿import {GlobalDefinition, BasePropertyDefinition, ExportableDefinitions} from "ts-type-info";
+﻿import {GlobalDefinition, BasePropertyDefinition, ExportableDefinitions, ClassConstructorParameterDefinition} from "ts-type-info";
 import {DefinitionInfo, SupportedDefinitions} from "./DefinitionInfo";
 
 export interface DefinitionTypeInfo {
     definition: SupportedDefinitions;
     propertyDependencies: { [name: string]: DefinitionInfo; };
+    properties: (ClassConstructorParameterDefinition | BasePropertyDefinition)[];
 }
 
 export class DefinitionTypeInfoBuilder {
@@ -39,10 +40,20 @@ export class DefinitionTypeInfoBuilder {
         if (defInfo == null) {
             defInfo = {
                 definition: def,
-                propertyDependencies: {}
+                propertyDependencies: {},
+                properties: []
             };
             this.defs.push(defInfo);
-            def.properties.forEach(p => {
+            defInfo.properties = [];
+
+            if (def.isClassDefinition()) {
+                defInfo.properties.push(...def.getPropertiesAndConstructorParameters());
+            }
+            else if (def.isInterfaceDefinition()) {
+                defInfo.properties.push(...def.properties);
+            }
+
+            defInfo.properties.forEach(p => {
                 this.getPropertyDependencyDefinitions(p).forEach(propTypeDef => {
                     defInfo.propertyDependencies[p.name] = this.createOrGetDefinitionInfo(propTypeDef) as DefinitionInfo;
                 });
@@ -62,7 +73,7 @@ export class DefinitionTypeInfoBuilder {
         return null;
     }
 
-    private getPropertyDependencyDefinitions(property: BasePropertyDefinition): SupportedDefinitions[] {
+    private getPropertyDependencyDefinitions(property: BasePropertyDefinition | ClassConstructorParameterDefinition): SupportedDefinitions[] {
         const propertyDependencies: SupportedDefinitions[] = [];
         property.typeExpression.types.forEach(t => {
             t.definitions.forEach(def => {

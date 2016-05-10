@@ -1,4 +1,6 @@
 ﻿export class Main {
+    constructor(public constructorParameter: Other) {
+    }
     name: string;
     other: Other;
 }
