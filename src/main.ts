@@ -1,11 +1,8 @@
-﻿import {getInfoFromFiles, createFile, createTypeAlias, ClassDefinition, FileDefinition, NamespaceDefinition, ModuledDefinition, GlobalDefinition, ExportableDefinitions,
-    TypeExpressionedDefinition, ImportDefinition, TypeAliasDefinition, createImport} from "ts-type-info";
-import * as path from "path";
-import {getValidNameFromPath} from "./getValidNameFromPath";
+﻿import {createFile, getInfoFromFiles} from "ts-type-info";
 import {DefinitionInfo} from "./DefinitionInfo";
-import {DefinitionTypeInfoBuilder, DefinitionTypeInfo} from "./DefinitionTypeInfoBuilder";
-import {DefinitionFileInfoFiller, DefinitionFileInfo} from "./DefinitionFileInfoFiller";
-import {NamespaceForCreateFiller, NamespaceForCreate} from "./NamespaceForCreateFiller";
+import {DefinitionTypeInfoBuilder} from "./DefinitionTypeInfoBuilder";
+import {DefinitionFileInfoFiller} from "./DefinitionFileInfoFiller";
+import {NamespaceForCreateFiller} from "./NamespaceForCreateFiller";
 import {ImportsBuilder} from "./ImportsBuilder";
 import {TypeAliasBuilder} from "./TypeAliasBuilder";
 import {FunctionForCreateFiller} from "./FunctionForCreateFiller";
@@ -50,7 +47,7 @@ export function getGeneratedCode(opts: GenerateCodeOptions) {
         name: "objectAssign",
         parameters: [{ name: "a" }, { name: "b" }],
         onWriteFunctionBody: (writer) => {
-            writer.write("Object.keys(b).forEach(key => a[key] = b[key]);")
+            writer.write("Object.keys(b).forEach(key => a[key] = b[key]);");
         }
     });
 

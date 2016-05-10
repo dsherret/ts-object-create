@@ -1,4 +1,4 @@
-﻿import {createFile, NamespaceDefinition, GlobalDefinition, ImportDefinition, FileDefinition} from "ts-type-info";
+﻿import {GlobalDefinition, FileDefinition} from "ts-type-info";
 import {DefinitionTypeInfo} from "./DefinitionTypeInfoBuilder";
 
 export class DefinitionFileInfo {

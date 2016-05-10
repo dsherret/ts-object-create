@@ -3,7 +3,6 @@
     "align": [
       true,
       "parameters",
-      "arguments",
       "statements"
     ],
     "ban": false,
@@ -95,7 +94,6 @@
       "check-operator",
       "check-separator",
       "check-type"
-    ],
-    "no-duplicate-imports-from-same-file": true
+    ]
   }
 }

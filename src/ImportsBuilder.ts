@@ -1,6 +1,6 @@
 ﻿import {ImportDefinition, FileDefinition, createImport} from "ts-type-info";
 import {getModuleSpecifier} from "./getModuleSpecifier";
-import {SupportedDefinitions, DefinitionInfo} from "./DefinitionInfo";
+import {SupportedDefinitions} from "./DefinitionInfo";
 
 export class ImportsBuilder {
     private importByFileName: { [fileName: string]: ImportDefinition; } = {};
@@ -26,7 +26,7 @@ export class ImportsBuilder {
     }
 
     private createImport(file: FileDefinition) {
-        const moduleSpecifier = getModuleSpecifier({ fileName: file.fileName, srcRoot: this.srcRoot })
+        const moduleSpecifier = getModuleSpecifier({ fileName: file.fileName, srcRoot: this.srcRoot });
         return createImport({
             moduleSpecifier
         });

@@ -1,5 +1,4 @@
-﻿import {ClassDefinition, InterfaceDefinition} from "ts-type-info";
-import {DefinitionInfo, SupportedDefinitions} from "./DefinitionInfo";
+﻿import {DefinitionInfo, SupportedDefinitions} from "./DefinitionInfo";
 
 export class FunctionForCreateFiller {
     fillFunction(defInfo: DefinitionInfo) {

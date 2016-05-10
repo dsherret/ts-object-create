@@ -1,4 +1,4 @@
-﻿import {TypeAliasDefinition, ClassDefinition, InterfaceDefinition, createTypeAlias} from "ts-type-info";
+﻿import {TypeAliasDefinition, createTypeAlias} from "ts-type-info";
 import {DefinitionInfo} from "./DefinitionInfo";
 
 export class TypeAliasBuilder {

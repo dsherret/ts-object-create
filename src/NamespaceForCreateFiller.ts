@@ -1,4 +1,4 @@
-﻿import {NamespaceDefinition, ImportDefinition, FileDefinition, ModuledDefinition, createFile, ClassDefinition, InterfaceDefinition} from "ts-type-info";
+﻿import {NamespaceDefinition, ModuledDefinition, createFile, ClassDefinition, InterfaceDefinition} from "ts-type-info";
 import {DefinitionInfo} from "./DefinitionInfo";
 import {getValidNameFromPath} from "./getValidNameFromPath";
 

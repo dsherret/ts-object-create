@@ -1,4 +1,4 @@
-﻿import {ClassDefinition, BaseDefinition, GlobalDefinition, InterfaceDefinition, BasePropertyDefinition} from "ts-type-info";
+﻿import {GlobalDefinition, BasePropertyDefinition} from "ts-type-info";
 import {DefinitionInfo, SupportedDefinitions} from "./DefinitionInfo";
 
 export interface DefinitionTypeInfo {
@@ -18,7 +18,7 @@ export class DefinitionTypeInfoBuilder {
 
         exportDefs.forEach(d => {
             if (d.isClassDefinition() || d.isInterfaceDefinition()) {
-                this.createOrGetDefinitionInfo(d)
+                this.createOrGetDefinitionInfo(d);
             }
         });
 
