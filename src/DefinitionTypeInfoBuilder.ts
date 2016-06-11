@@ -75,12 +75,10 @@ export class DefinitionTypeInfoBuilder {
 
     private getPropertyDependencyDefinitions(property: BasePropertyDefinition | ClassConstructorParameterDefinition): SupportedDefinitions[] {
         const propertyDependencies: SupportedDefinitions[] = [];
-        property.typeExpression.types.forEach(t => {
-            t.definitions.forEach(def => {
-                if (def.isClassDefinition() || def.isInterfaceDefinition()) {
-                    propertyDependencies.push(def);
-                }
-            });
+        property.type.getAllDefinitions().forEach(def => {
+            if (def.isClassDefinition() || def.isInterfaceDefinition()) {
+                propertyDependencies.push(def);
+            }
         });
         return propertyDependencies;
     }

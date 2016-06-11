@@ -15,11 +15,10 @@ export class NamespaceForCreateFiller {
     fillNamespaceForCreate(defInfo: DefinitionInfo) {
         const fileNamespace = this.getNamespaceFromModuleSpecifier(defInfo.importDef.moduleSpecifier, this.fileDefinition) as NamespaceDefinition;
         const parentNamespace = this.getNamespaceBasedOnParentNamespaceInFile(fileNamespace, defInfo);
-        parentNamespace.addNamespaces({
+        defInfo.namespaceDef = parentNamespace.addNamespace({
             name: defInfo.definition.name,
             isExported: true
         });
-        defInfo.namespaceDef = parentNamespace.namespaces[parentNamespace.namespaces.length - 1];
         // todo: refactor to not use getNamespacesToDefinition (performance reasons)
         // todo: refactor out the join to get the namespace path since this is done elsewhere
         defInfo.namespacePath = this.fileDefinition.getNamespacesToDefinition(defInfo.namespaceDef).map(n => n.name).join(".") + "." + defInfo.namespaceDef.name;
@@ -61,11 +60,10 @@ export class NamespaceForCreateFiller {
         let namespaceDef = currentDef.getNamespace(name);
 
         if (namespaceDef == null) {
-            currentDef.addNamespaces({
+            namespaceDef = currentDef.addNamespace({
                 name: name,
                 isExported: true
             });
-            namespaceDef = currentDef.namespaces[currentDef.namespaces.length - 1];
         }
 
         return namespaceDef;

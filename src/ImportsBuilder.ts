@@ -24,7 +24,7 @@ export class ImportsBuilder {
         const doesImportExist = importForCreate.getNamedImport(n => n.definitions[0].name === importName) != null;
 
         if (!doesImportExist) {
-            importForCreate.addNamedImports({
+            importForCreate.addNamedImport({
                 name: importName,
                 alias: opts.aliasNameInImport
             });

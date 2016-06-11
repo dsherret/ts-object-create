@@ -43,7 +43,7 @@ export function getGeneratedCode(opts: GenerateCodeOptions) {
     fileForWrite.typeAliases = typeAliasBuilder.getAll();
     fileForWrite.namespaces = namespaceForCreateFiller.getAllNamespaces();
 
-    fileForWrite.addFunctions({
+    fileForWrite.addFunction({
         name: "objectAssign",
         parameters: [{ name: "a" }, { name: "b" }],
         onWriteFunctionBody: (writer) => {

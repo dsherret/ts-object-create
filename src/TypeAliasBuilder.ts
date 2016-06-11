@@ -12,7 +12,7 @@ export class TypeAliasBuilder {
         if (this.typesByImportName[defInfo.aliasNameInFile] == null) {
             this.typesByImportName[defInfo.aliasNameInFile] = this.createType(defInfo);
             // do this after to prevent a recursive loop that runs forever
-            this.typesByImportName[defInfo.aliasNameInFile].typeExpression.text = this.getTypeExpressionText(defInfo);
+            this.typesByImportName[defInfo.aliasNameInFile].type.text = this.getTypeText(defInfo);
         }
 
         return this.typesByImportName[defInfo.aliasNameInFile];
@@ -25,7 +25,7 @@ export class TypeAliasBuilder {
         });
     }
 
-    private getTypeExpressionText(defInfo: DefinitionInfo) {
+    private getTypeText(defInfo: DefinitionInfo) {
         let typeStr = "{ ";
         defInfo.properties.forEach(p => {
             // simple for now
@@ -35,7 +35,7 @@ export class TypeAliasBuilder {
                 typeStr += this.getOrCreate(defInfo.propertyDependencies[p.name]).name;
             }
             else {
-                typeStr += p.typeExpression.text;
+                typeStr += p.type.text;
             }
 
             typeStr += "; ";

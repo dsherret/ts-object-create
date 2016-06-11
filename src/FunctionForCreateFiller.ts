@@ -2,7 +2,7 @@
 
 export class FunctionForCreateFiller {
     fillFunction(defInfo: DefinitionInfo) {
-        defInfo.namespaceDef.addFunctions({
+        defInfo.namespaceDef.addFunction({
             name: "create",
             isExported: true,
             parameters: [{ name: "obj", type: defInfo.typeAliasDef.name }],
