@@ -1,6 +1,6 @@
 {
   "name": "ts-object-create",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "description": "Object creation that utilizes type information",
   "main": "dist/main.js",
   "typings": "ts-object-create.d.ts",
@@ -41,7 +41,7 @@
     "gulp-tslint": "^5.0.0",
     "gulp-typescript": "^2.9.2",
     "mocha": "^2.3.3",
-    "ts-type-info": "^4.0.0",
+    "ts-type-info": "^5.0.0",
     "tslint": "^3.8.0",
     "typescript": "^1.8.10"
   }

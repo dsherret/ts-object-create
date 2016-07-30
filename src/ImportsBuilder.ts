@@ -21,7 +21,7 @@ export class ImportsBuilder {
         const namespaces = opts.fileDefinition.getNamespacesToDefinition(opts.definition);
         const defForImport = namespaces.length > 0 ? namespaces[0] : opts.definition;
         const importName = defForImport.isNamedExportOfFile ? defForImport.name : "default";
-        const doesImportExist = importForCreate.getNamedImport(n => n.definitions[0].name === importName) != null;
+        const doesImportExist = importForCreate.getNamedImport(n => n.name === importName) != null;
 
         if (!doesImportExist) {
             importForCreate.addNamedImport({

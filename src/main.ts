@@ -42,6 +42,7 @@ export function getGeneratedCode(opts: GenerateCodeOptions) {
     fileForWrite.imports = importsBuilder.getAll();
     fileForWrite.typeAliases = typeAliasBuilder.getAll();
     fileForWrite.namespaces = namespaceForCreateFiller.getAllNamespaces();
+    fileForWrite.typeAliases.forEach((def, i) => fileForWrite.setOrderOfMember(i, def));
 
     fileForWrite.addFunction({
         name: "objectAssign",
